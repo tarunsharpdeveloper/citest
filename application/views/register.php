@@ -58,7 +58,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <input type="submit" value="Register" name="register" class="btn btn-primary btn-lg" />
                   </div>
-
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                  <a href="<?php echo base_url(); ?>login"> Login if already Registered! </a>
+                  </div>
                 </form>
 
               </div>

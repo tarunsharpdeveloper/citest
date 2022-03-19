@@ -54,7 +54,9 @@ echo $this->session->flashdata('message');
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <input type="submit" value="Login" name="login" class="btn btn-primary btn-lg" />
                   </div>
-
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                  <a href="<?php echo base_url(); ?>register"> Register! </a>
+                  </div>
                 </form>
 
               </div>
