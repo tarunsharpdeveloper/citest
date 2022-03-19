@@ -17,7 +17,7 @@
 
   <!-- Links -->
   <ul class="navbar-nav">
-  <li class="nav-item">
+    <li class="nav-item">
       <a class="nav-link" href="<?php echo base_url(); ?>products">Products</a>
     </li>
     <li class="nav-item">
@@ -31,7 +31,7 @@
       </a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="<?php echo base_url(); ?>private_area/logout ">Logout</a>
- 
+
       </div>
     </li>
   </ul>
@@ -84,8 +84,46 @@
  <?php }else{ ?>
 
     <div class="container">
-  <h3>Welcome User</h3>
-  <p>User Dashboard.</p>
+  <h3>Product Details</h3>
+  <p> Dashboard.</p>
+  <div class="container d-flex justify-content-center mt-50 mb-50">
+    <div class="row">
+        <?php  $product=$product[0];  ?> 
+
+        <form method="post" action="<?php echo base_url(); ?>cart/validation" class="mx-1 mx-md-4">
+
+        <div class="col-md-4 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-img-actions"> <img src="<?php echo $product->image; ?>" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                </div>
+                <div class="card-body bg-light text-center">
+                    <div class="mb-2">
+                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true"><?php echo $product->title ?></a> </h6> 
+                    </div>
+                    <h3 class="mb-0 font-weight-semibold">$<?php echo $product->price; ?></h3>
+                    <div> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> </div>
+                    <div class="form-outline flex-fill mb-0">
+    <input type="number" name="qty" value="1" id="form3Example1c" class="form-control" />
+
+    <input type="hidden" name="user_id" value="<?php echo $this->session->userdata('id'); ?>"  />
+
+    <input type="hidden" name="product_id" value="<?php echo $product->price; ?>" />
+
+    <input type="hidden" name="title" value="<?php echo $product->title; ?>" />
+
+    <input type="hidden" name="price" value="<?php echo $product->price; ?>" />
+    <label class="form-label"  for="form3Example1c">Quantiry</label>
+  <span class="text-danger">  <?php echo form_error('user_name'); ?> </span>
+  </div>
+                    <input type="submit" class="btn bg-cart" name="add" value="Add to cart" />
+                </div>
+            </div>
+        </div>
+ </form>
+    </div>
+</div>
+ 
 </div>
 
  <?php } ?> 

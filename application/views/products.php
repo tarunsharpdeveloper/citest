@@ -31,7 +31,7 @@
       </a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="<?php echo base_url(); ?>private_area/logout ">Logout</a>
- 
+
       </div>
     </li>
   </ul>
@@ -86,6 +86,30 @@
     <div class="container">
   <h3>Welcome User</h3>
   <p>User Dashboard.</p>
+  <div class="container d-flex justify-content-center mt-50 mb-50">
+    <div class="row">
+        <?php foreach($products as $product){  ?> 
+
+   
+        <div class="col-md-4 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-img-actions"> <img src="<?php echo $product->image; ?>" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                </div>
+                <div class="card-body bg-light text-center">
+                    <div class="mb-2">
+                        <h6 class="font-weight-semibold mb-2"> <a href="<?php echo base_url(); ?>product/<?php echo $product->id; ?>" class="text-default mb-2" data-abc="true"><?php echo $product->title ?></a> </h6> 
+                    </div>
+                    <h3 class="mb-0 font-weight-semibold">$<?php echo $product->price; ?></h3>
+                    <div> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> </div>
+                   
+                </div>
+            </div>
+        </div>
+        <?php      }  ?>
+    </div>
+</div>
+ 
 </div>
 
  <?php } ?> 

@@ -31,7 +31,7 @@
       </a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="<?php echo base_url(); ?>private_area/logout ">Logout</a>
- 
+
       </div>
     </li>
   </ul>
@@ -84,8 +84,64 @@
  <?php }else{ ?>
 
     <div class="container">
-  <h3>Welcome User</h3>
-  <p>User Dashboard.</p>
+  <h3> User Carts</h3>
+  <p> Dashboard.</p>
+  <div class="container d-flex justify-content-center mt-50 mb-50">
+    <div class="row">
+        <?php
+        
+        foreach($carts as $cart){ 
+            
+
+// set API Endpoint and API key
+$endpoint = 'latest';
+$access_key = '691de305e7fa8787584d251b22982d07';
+
+// Initialize CURL:
+$ch = curl_init('http://api.exchangeratesapi.io/v1/'.$endpoint.'?access_key='.$access_key.'');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// Store the data:
+$json = curl_exec($ch);
+curl_close($ch);
+
+// Decode JSON response:
+$exchangeRates = json_decode($json, true);
+
+// Access the exchange rate values, e.g. GBP:
+
+            
+            ?> 
+
+   
+        <div class="col-md-4 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <?php //print_r($exchangeRates); ?>
+                </div>
+                <div class="card-body bg-light text-center">
+                    <div class="mb-2">
+                        <h6 class="font-weight-semibold mb-2"> <?php echo $cart->title; ?> </h6> 
+                    </div>
+                    <div class="mb-2">
+                        <h6 class="font-weight-semibold mb-2">Exchange Rate USD: <?php echo $exchangeRates['rates']['USD']; ?> </h6> 
+                    </div>
+                    <div class="mb-2">
+                        <h6 class="font-weight-semibold mb-2">Exchange Rate RON: <?php echo $exchangeRates['rates']['RON']; ?> </h6> 
+                    </div>
+
+                   
+
+                    <h3 class="mb-0 font-weight-semibold">$<?php echo $cart->price; ?> X <?php echo $cart->qty; ?>(QTY)= $<?php echo $cart->price*$cart->qty; ?></h3>
+                    <div> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> </div>
+                   
+                </div>
+            </div>
+        </div>
+        <?php      }  ?>
+    </div>
+</div>
+ 
 </div>
 
  <?php } ?> 
