@@ -1,43 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand -->
-  <a class="navbar-brand" href="#">CI Test</a>
-
-  <!-- Links -->
-  <ul class="navbar-nav">
-  <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url(); ?>products">Products</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url(); ?>cart">Cart</a>
-    </li>
-
-    <!-- Dropdown -->
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-      Welcome : <?php echo $this->session->userdata('username'); ?>
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="<?php echo base_url(); ?>private_area/logout ">Logout</a>
- 
-      </div>
-    </li>
-  </ul>
-</nav>
-<br>
- <?php if($this->session->userdata('usertype')==1){ ?>
+<?php if($this->session->userdata('usertype')==1){?>
     <div class="container">
     <div class="container-fluid">
   <div class="row content">
@@ -51,30 +12,48 @@
         <div class="col-sm-3">
           <div class="well">
             <h4>Users</h4>
-            <p>1 Million</p> 
+            <p>Total: <?php echo $total_user; ?></p> 
+            <p>Active/Verified: <?php echo $total_verified; ?></p> 
+            <p>Inactive/Unverified: <?php echo $total_unverified; ?></p> 
+            <p>User Has Active Products: <?php echo $total_hasproduct; ?></p> 
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4>Pages</h4>
-            <p>100 Million</p> 
+            <h4>Products</h4>
+            <p>Total: <?php echo $total_product; ?></p> 
+            <p>Active: <?php echo $total_active_product; ?></p> 
+            <p>Inactive: <?php echo $total_product-$total_active_product; ?></p> 
+            <p>Not Attached: <?php echo $notattached; ?></p>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4>Sessions</h4>
-            <p>10 Million</p> 
+            <h4>Attached Products Amount</h4>
+            <p>Amount of All Active Attached Products: <?php echo $activeProductsTotalAmount; ?></p> 
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4>Bounce</h4>
-            <p>30%</p> 
+            <h4>Summarized Amount By Users</h4>
+            <?php foreach($userwiseProductsTotalAmount as $user){ ?>
+              <p><?php echo $user['username']; ?>: <?php echo $user['amount']; ?></p> 
+           <?php  } ?>
+           
           </div>
         </div>
       </div>
 
     </div>
+    <div class="well">
+        <h4>Exchange Rates</h4>
+        <div class="mb-2">
+                <h6 class="font-weight-semibold mb-2">Exchange Rate USD: <?php echo $exchangeRates['rates']['USD']; ?> </h6>
+              </div>
+              <div class="mb-2">
+                <h6 class="font-weight-semibold mb-2">Exchange Rate RON: <?php echo $exchangeRates['rates']['RON']; ?> </h6>
+              </div>
+      </div>
   </div>
 </div>
 
